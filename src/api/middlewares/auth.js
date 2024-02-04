@@ -21,11 +21,9 @@ const auth = async (ctx) => {
       role: payload.role,
       userId: payload.id,
     }
-    console.log(ctx.session)
 
     await next()
   } catch (err) {
-    console.error(err)
     throw new ForbiddenError()
   }
 }
