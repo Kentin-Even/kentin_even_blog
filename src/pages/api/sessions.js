@@ -3,7 +3,12 @@ import auth from "@/api/middlewares/auth"
 import { validate } from "@/api/middlewares/validate"
 import mw from "@/api/mw"
 import config from "@/config"
-import { emailValidator, passwordValidator } from "@/utils/validators"
+import {
+  emailValidator,
+  passwordValidator,
+  roleValidator,
+  usernameValidator
+} from "@/utils/validators"
 import jsonwebtoken from "jsonwebtoken"
 import ms from "ms"
 import { NextResponse } from "next/server"
@@ -13,6 +18,8 @@ const handle = mw({
     validate({
       body: {
         email: emailValidator,
+        username: usernameValidator,
+        role: roleValidator,
         password: passwordValidator,
       },
     }),
@@ -42,6 +49,9 @@ const handle = mw({
         {
           payload: {
             id: user.id,
+            role: user.role,
+            username: user.username,
+            userId: user.id,
           },
         },
         config.security.jwt.secret,

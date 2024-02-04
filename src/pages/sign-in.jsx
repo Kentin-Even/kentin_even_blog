@@ -1,4 +1,9 @@
-import { emailValidator, passwordValidator } from "@/utils/validators"
+import {
+  emailValidator,
+  passwordValidator,
+  roleValidator,
+  usernameValidator,
+} from "@/utils/validators"
 import { useSession } from "@/web/components/SessionContext"
 import ErrorMessage from "@/web/components/ui/ErrorMessage"
 import Form from "@/web/components/ui/Form"
@@ -12,11 +17,15 @@ import { object } from "yup"
 
 const initialValues = {
   email: "",
+  username: "",
   password: "",
+  role: "user",
 }
 const validationSchema = object({
   email: emailValidator.label("E-mail"),
+  username: usernameValidator.label("Username"),
   password: passwordValidator.label("Password"),
+  role: roleValidator.label("Role"),
 })
 const SignUpPage = () => {
   const router = useRouter()
@@ -41,6 +50,12 @@ const SignUpPage = () => {
         onSubmit={handleSubmit}
       >
         <Form>
+          <FormField
+            name="username"
+            type="text"
+            placeholder="Enter your username"
+            label="Username"
+          />
           <FormField
             name="email"
             type="email"

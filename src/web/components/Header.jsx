@@ -17,16 +17,15 @@ const Header = () => {
       <div className="flex md:max-w-3xl mx-auto p-4">
         <div className="text-2xl">
           <Link href="/" styless>
-            LOGO
+            Blog
           </Link>
         </div>
         <nav className="ms-auto">
           <ul className="flex h-full gap-4 items-center">
             {session ? (
               <>
-                <MenuItem href="/">List todos</MenuItem>
-                <MenuItem href="/todos/create">Create todo</MenuItem>
-                <MenuItem href="/categories">List categories</MenuItem>
+                <MenuItem href="/post">Create Post</MenuItem>
+                <MenuItem href="/admin">Admin</MenuItem>
                 <li>
                   <Button
                     variant="transparent"

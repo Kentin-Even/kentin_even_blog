@@ -16,10 +16,16 @@ const auth = async (ctx) => {
       config.security.jwt.secret,
     )
 
-    ctx.session = payload
+    ctx.session = {
+      id: payload.id,
+      role: payload.role,
+      userId: payload.id,
+    }
+    console.log(ctx.session)
 
     await next()
   } catch (err) {
+    console.error(err)
     throw new ForbiddenError()
   }
 }
