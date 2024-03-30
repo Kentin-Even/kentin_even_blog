@@ -1,7 +1,6 @@
 import {
   emailValidator,
   passwordValidator,
-  roleValidator,
   usernameValidator,
 } from "@/utils/validators"
 import { useSession } from "@/web/components/SessionContext"
@@ -19,13 +18,11 @@ const initialValues = {
   email: "",
   username: "",
   password: "",
-  role: "user",
 }
 const validationSchema = object({
   email: emailValidator.label("E-mail"),
   username: usernameValidator.label("Username"),
   password: passwordValidator.label("Password"),
-  role: roleValidator.label("Role"),
 })
 const SignUpPage = () => {
   const router = useRouter()
@@ -42,35 +39,38 @@ const SignUpPage = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <ErrorMessage error={error} />
-      <Formik
-        validationSchema={validationSchema}
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <FormField
-            name="username"
-            type="text"
-            placeholder="Enter your username"
-            label="Username"
-          />
-          <FormField
-            name="email"
-            type="email"
-            placeholder="Enter your e-mail"
-            label="E-mail"
-          />
-          <FormField
-            name="password"
-            type="password"
-            placeholder="Enter your password"
-            label="Password"
-          />
-          <SubmitButton>Sign In</SubmitButton>
-        </Form>
-      </Formik>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-4 text-center">Sign Up</h2>
+        <ErrorMessage error={error} />
+        <Formik
+          validationSchema={validationSchema}
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <FormField
+              name="username"
+              type="text"
+              placeholder="Enter your username"
+              label="Username"
+            />
+            <FormField
+              name="email"
+              type="email"
+              placeholder="Enter your e-mail"
+              label="E-mail"
+            />
+            <FormField
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              label="Password"
+            />
+            <SubmitButton className="mt-4 w-full">Sign Up</SubmitButton>
+          </Form>
+        </Formik>
+      </div>
     </div>
   )
 }
