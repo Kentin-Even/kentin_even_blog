@@ -8,8 +8,8 @@ class PostsModel extends BaseModel {
 
   static get relationMappings() {
     return {
-      users: {
-        relation: BaseModel.HasManyRelation,
+      author: {
+        relation: BaseModel.BelongsToOneRelation,
         modelClass: UserModel,
         join: {
           from: "posts.userId",
@@ -21,7 +21,7 @@ class PostsModel extends BaseModel {
         modelClass: CommentsModel,
         join: {
           from: "posts.id",
-          to: "comments.postId"
+          to: "comments.postId",
         }
       }
     }

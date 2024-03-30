@@ -3,7 +3,13 @@ export const up = async (db) => {
     table.increments("id").primary()
     table.text("title").notNullable()
     table.text("content").notNullable()
-    table.integer("userId").unsigned().references("id").inTable("users")
+    table.integer("userId").notNullable()
+    table
+      .foreign("userId")
+      .references("id")
+      .inTable("users")
+      .onUpdate("cascade")
+      .onDelete("cascade")
     table.timestamps(true, true)
   })
 }

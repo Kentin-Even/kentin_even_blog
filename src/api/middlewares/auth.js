@@ -19,7 +19,6 @@ const auth = async (ctx) => {
     ctx.session = {
       id: payload.id,
       role: payload.role,
-      userId: payload.id,
     }
 
     await next()
